@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kanon Group · Luxury Hotels in Khartoum & Mekka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#"><i class="fas fa-crown"></i> Kanon Group</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#properties">Properties</a></li>
+      <li><a href="#rooms">Rooms</a></li>
+      <li><a href="#why">Why Kanon</a></li>
+      <li><a href="#book">Book</a></li>
+      <li><a href="admin.html" class="pill"><i class="fas fa-lock"></i> Staff Login</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="fade-up">
+      <span class="pill" style="margin-bottom:1.2rem;"><i class="fas fa-map-pin"></i> Khartoum · Mekka</span>
+      <h1><span class="glow-text display-font">Kanon</span> <span class="thin">Hotels</span></h1>
+      <p class="lead">Where heritage meets modern luxury. Reserve your stay across our collection of five-star properties and receive instant confirmation on WhatsApp.</p>
+      <div class="hero-badges">
+        <span class="pill"><i class="fas fa-star"></i> 5-Star Service</span>
+        <span class="pill"><i class="fas fa-wifi"></i> Free Premium Wi-Fi</span>
+        <span class="pill"><i class="fas fa-utensils"></i> Gourmet Dining</span>
+      </div>
+    </div>
+    <div class="booking-card fade-up" id="book">
+      <h3><i class="fas fa-calendar-check"></i> Reserve your stay</h3>
+      <p class="sub">Instant confirmation · WhatsApp notification</p>
+      <form id="bookingForm" novalidate>
+        <div class="form-group"><label class="form-label" for="guestName">Full name</label>
+          <input class="form-control" type="text" id="guestName" placeholder="e.g. Ahmed Osman" required /></div>
+        <div class="row-2">
+          <div class="form-group"><label class="form-label" for="guestPhone">Phone (WhatsApp)</label>
+            <input class="form-control" type="tel" id="guestPhone" placeholder="+249..." /></div>
+          <div class="form-group"><label class="form-label" for="guestEmail">Email</label>
+            <input class="form-control" type="email" id="guestEmail" placeholder="you@email.com" /></div>
+        </div>
+        <div class="form-group"><label class="form-label" for="propertySelect">Property</label>
+          <select class="form-select" id="propertySelect"></select></div>
+        <div class="row-2">
+          <div class="form-group"><label class="form-label" for="checkin">Check-in</label>
+            <input class="form-control" type="date" id="checkin" required /></div>
+          <div class="form-group"><label class="form-label" for="checkout">Check-out</label>
+            <input class="form-control" type="date" id="checkout" required /></div>
+        </div>
+        <div class="row-2">
+          <div class="form-group"><label class="form-label" for="roomTypeSelect">Room type</label>
+            <select class="form-select" id="roomTypeSelect"></select></div>
+          <div class="form-group"><label class="form-label" for="guests">Guests</label>
+            <input class="form-control" type="number" id="guests" value="2" min="1" max="6" /></div>
+        </div>
+        <div id="availBox" style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.8rem;"></div>
+        <div id="quoteBox"></div>
+        <button type="submit" class="btn btn-gold btn-block" style="padding:1rem;">
+          <i class="fas fa-check-circle"></i> Book now · instant confirmation</button>
+        <p style="text-align:center;font-size:.75rem;color:var(--muted);margin-top:.7rem;">
+          <i class="fab fa-whatsapp" style="color:var(--wa);"></i> You'll receive a WhatsApp confirmation</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="properties">
+  <div class="section-head">
+    <span class="eyebrow">Our Collection</span>
+    <h2>Handpicked luxury properties</h2>
+    <p>Each Kanon Group hotel delivers a distinct experience — from Nile views to the serenity of Mekka.</p>
+  </div>
+  <div class="grid-3" id="propertyGrid"></div>
+</section>
+
+<section class="section" id="rooms" style="padding-top:0;">
+  <div class="section-head">
+    <span class="eyebrow">Room Types</span>
+    <h2>Choose your comfort</h2>
+    <p>From cosy standards to expansive executive suites — all with premium amenities.</p>
+  </div>
+  <div class="room-grid" id="roomTypeGrid"></div>
+</section>
+
+<section class="why" id="why">
+  <div class="why-inner">
+    <span class="eyebrow" style="color:var(--gold);">Why Kanon</span>
+    <h2 style="color:#fff;margin-top:.6rem;">A stay that exceeds expectations</h2>
+    <p class="intro">We blend Sudanese hospitality with international standards across every property.</p>
+    <div class="why-grid">
+      <div class="why-item"><i class="fas fa-bolt"></i><h4>Instant Booking</h4><p>Reserve in under 60 seconds with immediate confirmation.</p></div>
+      <div class="why-item"><i class="fab fa-whatsapp"></i><h4>WhatsApp Alerts</h4><p>Get your confirmation and updates directly on WhatsApp.</p></div>
+      <div class="why-item"><i class="fas fa-shield-alt"></i><h4>Secure & Private</h4><p>Your data is encrypted and never shared with third parties.</p></div>
+      <div class="why-item"><i class="fas fa-concierge-bell"></i><h4>24/7 Concierge</h4><p>Our team is available around the clock to assist you.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="brand" style="font-size:1.1rem;"><i class="fas fa-crown" style="color:var(--gold);"></i> Kanon Group ™</div>
+      <div style="margin-top:.4rem;font-size:.78rem;">Khartoum · Mekka · coming soon worldwide</div>
+    </div>
+    <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+      <span><i class="fas fa-location-dot"></i> Khartoum · Mekka</span>
+      <span><i class="fab fa-whatsapp" style="color:var(--wa);"></i> +249 12 345 6789</span>
+      <a href="admin.html" style="color:var(--gold);"><i class="fas fa-lock"></i> Staff Login</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="confirmModal">
+  <div class="modal">
+    <div class="check"><i class="fas fa-check"></i></div>
+    <h3>Booking Confirmed</h3>
+    <p class="sub">A WhatsApp confirmation has been sent to management.</p>
+    <div id="confirmBody"></div>
+  </div>
+</div>
+
+<div class="toast-host" id="toastHost"></div>
+<script src="js/store.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
