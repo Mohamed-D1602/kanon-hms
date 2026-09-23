@@ -202,3 +202,73 @@ table.data tr:hover td{background:#fdfaf3}
   .toast-host{left:16px;right:16px;bottom:16px}
   .toast{min-width:auto;width:100%}
 }
+/* ============================================================
+   Extended modules · Kanban · Finance · HR
+   ============================================================ */
+.tabs{display:flex;gap:.3rem;border-bottom:1px solid #ece7dd;margin-bottom:1.2rem;flex-wrap:wrap}
+.tabs button{background:none;border:none;padding:.6rem 1rem;font-size:.85rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;font-family:inherit}
+.tabs button.active{color:var(--gold-dark);border-bottom-color:var(--gold)}
+.tabs button:hover{color:var(--ink)}
+
+.kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+@media (max-width:1100px){.kanban{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.kanban{grid-template-columns:1fr}}
+.kanban-col{background:#f5f1ea;border-radius:var(--radius);padding:.9rem;min-height:200px}
+.kanban-col h5{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:.8rem;display:flex;justify-content:space-between;align-items:center}
+.kanban-col h5 .count{background:#fff;padding:.1rem .5rem;border-radius:999px;font-size:.7rem;color:var(--ink);font-weight:700}
+.task-card{background:#fff;border-radius:12px;padding:.8rem;margin-bottom:.6rem;border-left:4px solid var(--gold);box-shadow:0 2px 6px rgba(0,0,0,.04);transition:all .2s}
+.task-card:hover{box-shadow:0 6px 14px rgba(0,0,0,.08);transform:translateY(-2px)}
+.task-card.priority-high{border-left-color:var(--danger)}
+.task-card.priority-medium{border-left-color:var(--warning)}
+.task-card.priority-low{border-left-color:var(--info)}
+.task-card .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.35rem}
+.task-card .head strong{font-size:.88rem}
+.task-card .meta{font-size:.72rem;color:var(--muted);margin-bottom:.5rem}
+.task-card .actions{display:flex;gap:.3rem;flex-wrap:wrap}
+.task-card .actions button{padding:.25rem .55rem;font-size:.7rem;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-family:inherit;background:var(--paper);color:var(--ink);transition:all .15s}
+.task-card .actions button:hover{background:var(--gold);color:#fff}
+.task-card .actions button.primary{background:var(--gold);color:#fff}
+.task-card .actions button.primary:hover{background:var(--gold-dark)}
+.task-card .actions button.danger{background:rgba(231,76,60,.1);color:var(--danger)}
+
+.avatar-sm{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;display:inline-grid;place-items:center;font-weight:700;font-size:.75rem;flex-shrink:0}
+.emp-cell{display:flex;align-items:center;gap:.6rem}
+
+.shift-chip{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .75rem;border-radius:999px;font-size:.75rem;font-weight:600;background:rgba(201,168,108,.15);color:var(--gold-dark);border:1px solid rgba(201,168,108,.3)}
+.shift-chip.night{background:rgba(52,73,94,.15);color:#2c3e50;border-color:rgba(52,73,94,.3)}
+.shift-chip.morning{background:rgba(243,156,18,.15);color:#b9770e;border-color:rgba(243,156,18,.3)}
+.shift-chip.evening{background:rgba(155,89,182,.15);color:#7d3c98;border-color:rgba(155,89,182,.3)}
+
+.progress{height:8px;background:#ece7dd;border-radius:999px;overflow:hidden;margin-top:.4rem}
+.progress > span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-dark));border-radius:999px;transition:width .4s}
+
+.mini-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem;align-items:end;background:#fff;padding:1rem;border-radius:var(--radius);border:1px solid #ece7dd;margin-bottom:1.2rem}
+.mini-form .form-group{margin-bottom:0}
+.mini-form button{align-self:end}
+
+.num-pos{color:var(--success);font-weight:700}
+.num-neg{color:var(--danger);font-weight:700}
+
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.9rem;margin-bottom:1.2rem}
+.kpi{background:#fff;border-radius:14px;padding:1rem 1.1rem;border:1px solid #ece7dd}
+.kpi .k-label{font-size:.72rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.kpi .k-val{font-size:1.5rem;font-weight:700;font-family:'Playfair Display',serif;margin-top:.25rem}
+.kpi .k-sub{font-size:.75rem;color:var(--muted);margin-top:.15rem}
+
+.badge.income{background:rgba(46,204,113,.15);color:#1e8449}
+.badge.expense{background:rgba(231,76,60,.15);color:#a93226}
+.badge.active-emp{background:rgba(46,204,113,.15);color:#1e8449}
+.badge.on-leave{background:rgba(243,156,18,.15);color:#b9770e}
+.badge.terminated{background:rgba(120,120,140,.18);color:#4a4a5a}
+.badge.paid{background:rgba(46,204,113,.15);color:#1e8449}
+.badge.unpaid{background:rgba(231,76,60,.15);color:#a93226}
+.badge.in-progress{background:rgba(52,152,219,.15);color:#1f618d}
+.badge.done{background:rgba(46,204,113,.15);color:#1e8449}
+.badge.inspected{background:rgba(155,89,182,.15);color:#7d3c98}
+.badge.high{background:rgba(231,76,60,.15);color:#a93226}
+.badge.medium{background:rgba(243,156,18,.15);color:#b9770e}
+.badge.low{background:rgba(52,152,219,.15);color:#1f618d}
+.badge.approved{background:rgba(46,204,113,.15);color:#1e8449}
+.badge.rejected{background:rgba(231,76,60,.15);color:#a93226}
+
+@media print{.sidebar,.topbar,.tabs,button{display:none!important}}
