@@ -21,14 +21,10 @@
     <form id="loginForm">
       <div class="form-group"><label class="form-label" for="password">Password</label>
         <input class="form-control" type="password" id="password" placeholder="Enter admin password" required /></div>
-      <button type="submit" class="btn btn-gold btn-block" style="padding:1rem;">
-        <i class="fas fa-sign-in-alt"></i> Sign in</button>
+      <button type="submit" class="btn btn-gold btn-block" style="padding:1rem;"><i class="fas fa-sign-in-alt"></i> Sign in</button>
     </form>
     <div class="demo-cred">Demo password: <code>kanon2026</code></div>
-    <div style="text-align:center;margin-top:1rem;">
-      <a href="index.html" style="font-size:.8rem;color:var(--muted);">
-        <i class="fas fa-arrow-left"></i> Back to website</a>
-    </div>
+    <div style="text-align:center;margin-top:1rem;"><a href="index.html" style="font-size:.8rem;color:var(--muted);"><i class="fas fa-arrow-left"></i> Back to website</a></div>
   </div>
 </div>
 
@@ -39,15 +35,16 @@
       <li><a data-panel="dashboard" class="active" href="#"><i class="fas fa-chart-line"></i> Dashboard</a></li>
       <li><a data-panel="bookings" href="#"><i class="fas fa-calendar-check"></i> Bookings</a></li>
       <li><a data-panel="rooms" href="#"><i class="fas fa-bed"></i> Rooms</a></li>
+      <li><a data-panel="housekeeping" href="#"><i class="fas fa-broom"></i> Housekeeping</a></li>
+      <li><a data-panel="accounts" href="#"><i class="fas fa-coins"></i> Accounts</a></li>
+      <li><a data-panel="hr" href="#"><i class="fas fa-users"></i> HR</a></li>
       <li><a data-panel="notifications" href="#"><i class="fas fa-bell"></i> Notifications</a></li>
       <li><a data-panel="settings" href="#"><i class="fas fa-cog"></i> Settings</a></li>
     </ul></nav>
     <div class="sidebar-foot">
       <div>Signed in as <strong style="color:var(--gold);">Admin</strong></div>
-      <button class="btn btn-ghost btn-sm" id="logoutBtn" style="margin-top:.8rem;width:100%;border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.7);">
-        <i class="fas fa-sign-out-alt"></i> Log out</button>
-      <a href="index.html" style="display:block;margin-top:.6rem;color:rgba(255,255,255,.4);font-size:.72rem;text-align:center;">
-        <i class="fas fa-external-link-alt"></i> Public website</a>
+      <button class="btn btn-ghost btn-sm" id="logoutBtn" style="margin-top:.8rem;width:100%;border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.7);"><i class="fas fa-sign-out-alt"></i> Log out</button>
+      <a href="index.html" style="display:block;margin-top:.6rem;color:rgba(255,255,255,.4);font-size:.72rem;text-align:center;"><i class="fas fa-external-link-alt"></i> Public website</a>
     </div>
   </aside>
 
@@ -57,7 +54,7 @@
         <button class="nav-toggle" id="sidebarToggle" style="color:var(--ink);"><i class="fas fa-bars"></i></button>
         <div>
           <div class="crumb"><i class="fas fa-home"></i> Kanon Group / <span id="pageTitle">Dashboard</span></div>
-          <h1 id="pageHeading">Overview</h1>
+          <h1 id="pageHeading">Back Office</h1>
         </div>
       </div>
       <div class="topbar-actions">
@@ -67,24 +64,20 @@
     </header>
 
     <main class="content">
+
+      <!-- ============ DASHBOARD ============ -->
       <section class="panel active" id="panel-dashboard">
         <div class="stat-grid" id="statGrid"></div>
         <div class="chart-grid">
-          <div class="card"><h4><i class="fas fa-chart-area"></i> Revenue · last 7 days</h4>
-            <div class="chart-wrap"><canvas id="revenueChart"></canvas></div></div>
-          <div class="card"><h4><i class="fas fa-chart-pie"></i> Occupancy</h4>
-            <div class="chart-wrap"><canvas id="occupancyChart"></canvas></div></div>
+          <div class="card"><h4><i class="fas fa-chart-area"></i> Revenue · last 7 days</h4><div class="chart-wrap"><canvas id="revenueChart"></canvas></div></div>
+          <div class="card"><h4><i class="fas fa-chart-pie"></i> Occupancy</h4><div class="chart-wrap"><canvas id="occupancyChart"></canvas></div></div>
         </div>
-        <div class="card"><h4><i class="fas fa-bolt"></i> Latest bookings</h4>
-          <div class="table-wrap"><table class="data">
-            <thead><tr><th>ID</th><th>Guest</th><th>Property</th><th>Room</th><th>Check-in</th><th>Total</th><th>Status</th></tr></thead>
-            <tbody id="bookingsTbodyLatest"></tbody>
-          </table></div></div>
       </section>
 
+      <!-- ============ BOOKINGS ============ -->
       <section class="panel" id="panel-bookings">
         <div class="toolbar">
-          <input class="form-control grow" id="bookingSearch" placeholder="Search by guest, ID, or property..." />
+          <input class="form-control grow" id="bookingSearch" placeholder="Search by guest, ID, property..." />
           <select class="form-select" id="bookingStatus">
             <option value="all">All statuses</option>
             <option value="pending">Pending</option>
@@ -101,42 +94,129 @@
         </table></div>
       </section>
 
+      <!-- ============ ROOMS ============ -->
       <section class="panel" id="panel-rooms">
-        <p style="color:var(--muted);font-size:.88rem;margin-bottom:1rem;">
-          <i class="fas fa-info-circle"></i> Change a room's status directly — updates reflect across the system.</p>
+        <p style="color:var(--muted);font-size:.88rem;margin-bottom:1rem;"><i class="fas fa-info-circle"></i> Change a room's status. Housekeeping state is set automatically after checkout.</p>
         <div id="roomsGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;"></div>
       </section>
 
+      <!-- ============ HOUSEKEEPING ============ -->
+      <section class="panel" id="panel-housekeeping">
+        <h3 style="margin-bottom:.8rem;"><i class="fas fa-plus-circle" style="color:var(--gold);"></i> New task</h3>
+        <form class="mini-form" id="hkForm">
+          <div class="form-group"><label class="form-label">Room</label><select class="form-select" id="hkRoom" required></select></div>
+          <div class="form-group"><label class="form-label">Type</label><select class="form-select" id="hkType"><option value="daily">Daily clean</option><option value="checkout">Checkout clean</option><option value="deep">Deep clean</option><option value="maintenance">Maintenance</option></select></div>
+          <div class="form-group"><label class="form-label">Priority</label><select class="form-select" id="hkPriority"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select></div>
+          <div class="form-group"><label class="form-label">Assign to</label><select class="form-select" id="hkAssign"></select></div>
+          <div class="form-group"><label class="form-label">Notes</label><input class="form-control" id="hkNotes" placeholder="Optional" /></div>
+          <button class="btn btn-gold" type="submit"><i class="fas fa-plus"></i> Create</button>
+        </form>
+
+        <h3 style="margin:1.5rem 0 .8rem;"><i class="fas fa-clipboard-list" style="color:var(--gold);"></i> Task board</h3>
+        <div class="kanban" id="hkBoard"></div>
+
+        <h3 style="margin:2rem 0 .8rem;"><i class="fas fa-boxes" style="color:var(--gold);"></i> Supplies inventory</h3>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>Item</th><th>Quantity</th><th>Reorder Level</th><th>Unit Cost</th><th>Status</th><th></th></tr></thead>
+          <tbody id="suppliesBody"></tbody>
+        </table></div>
+      </section>
+
+      <!-- ============ ACCOUNTS ============ -->
+      <section class="panel" id="panel-accounts">
+        <div class="kpi-row" id="accountsKpi"></div>
+
+        <h3 style="margin:1.5rem 0 .8rem;"><i class="fas fa-plus-circle" style="color:var(--gold);"></i> Record a transaction</h3>
+        <form class="mini-form" id="txForm">
+          <div class="form-group"><label class="form-label">Type</label>
+            <select class="form-select" id="txType"><option value="income">Income</option><option value="expense">Expense</option></select></div>
+          <div class="form-group"><label class="form-label">Category</label><select class="form-select" id="txCategory"></select></div>
+          <div class="form-group"><label class="form-label">Method</label>
+            <select class="form-select" id="txMethod"><option>cash</option><option>card</option><option>bank</option><option>online</option></select></div>
+          <div class="form-group"><label class="form-label">Amount</label><input class="form-control" id="txAmount" type="number" step="0.01" required /></div>
+          <div class="form-group"><label class="form-label">Description</label><input class="form-control" id="txDesc" placeholder="e.g. Room service" /></div>
+          <button class="btn btn-gold" type="submit"><i class="fas fa-save"></i> Save</button>
+        </form>
+
+        <div class="chart-grid" style="margin-top:1.5rem;">
+          <div class="card"><h4><i class="fas fa-chart-pie"></i> Expenses by category</h4><div class="chart-wrap"><canvas id="expenseChart"></canvas></div></div>
+        </div>
+
+        <h3 style="margin:1.5rem 0 .8rem;"><i class="fas fa-receipt" style="color:var(--gold);"></i> Recent transactions</h3>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>Date</th><th>Type</th><th>Category</th><th>Description</th><th>Method</th><th>Amount</th></tr></thead>
+          <tbody id="txBody"></tbody>
+        </table></div>
+
+        <h3 style="margin:2rem 0 .8rem;"><i class="fas fa-file-invoice" style="color:var(--gold);"></i> Invoices</h3>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>Invoice</th><th>Guest</th><th>Issued</th><th>Total</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="invBody"></tbody>
+        </table></div>
+      </section>
+
+      <!-- ============ HR ============ -->
+      <section class="panel" id="panel-hr">
+        <h3 style="margin-bottom:.8rem;"><i class="fas fa-user-plus" style="color:var(--gold);"></i> Add employee</h3>
+        <form class="mini-form" id="empForm">
+          <div class="form-group"><label class="form-label">Name</label><input class="form-control" id="empName" required /></div>
+          <div class="form-group"><label class="form-label">Role</label><input class="form-control" id="empRole" placeholder="e.g. Receptionist" required /></div>
+          <div class="form-group"><label class="form-label">Department</label><select class="form-select" id="empDept"><option>Management</option><option>Front Desk</option><option>Housekeeping</option><option>F&B</option><option>Maintenance</option><option>Security</option></select></div>
+          <div class="form-group"><label class="form-label">Phone</label><input class="form-control" id="empPhone" /></div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-control" id="empEmail" type="email" /></div>
+          <div class="form-group"><label class="form-label">Salary (USD)</label><input class="form-control" id="empSalary" type="number" required /></div>
+          <button class="btn btn-gold" type="submit"><i class="fas fa-plus"></i> Add</button>
+        </form>
+
+        <h3 style="margin:1.5rem 0 .8rem;"><i class="fas fa-users" style="color:var(--gold);"></i> Employees</h3>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>Employee</th><th>Role</th><th>Department</th><th>Phone</th><th>Hired</th><th>Salary</th><th>Status</th><th></th></tr></thead>
+          <tbody id="empBody"></tbody>
+        </table></div>
+
+        <h3 style="margin:2rem 0 .8rem;"><i class="fas fa-clock" style="color:var(--gold);"></i> Today's attendance</h3>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>Employee</th><th>Department</th><th>Clock In</th><th>Clock Out</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="attBody"></tbody>
+        </table></div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin:2rem 0 .8rem;">
+          <h3><i class="fas fa-money-check-alt" style="color:var(--gold);"></i> Payroll</h3>
+          <button class="btn btn-gold btn-sm" id="runPayroll"><i class="fas fa-play"></i> Run Payroll for this Month</button>
+        </div>
+        <div class="table-wrap"><table class="data">
+          <thead><tr><th>Month</th><th>Employee</th><th>Base</th><th>Allowances</th><th>Deductions</th><th>Net</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="payBody"></tbody>
+        </table></div>
+      </section>
+
+      <!-- ============ NOTIFICATIONS ============ -->
       <section class="panel" id="panel-notifications">
         <div style="margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center;">
-          <p style="color:var(--muted);font-size:.88rem;">
-            <i class="fab fa-whatsapp" style="color:var(--wa);"></i> Real-time alerts from guests and the system.</p>
-          <button class="btn btn-ghost btn-sm" id="markAllRead"><i class="fas fa-check-double"></i> Mark all read</button>
+          <p style="color:var(--muted);font-size:.88rem;"><i class="fab fa-whatsapp" style="color:var(--wa);"></i> Real-time alerts from guests and the system.</p>
         </div>
         <div class="feed" id="notifFeed"></div>
       </section>
 
+      <!-- ============ SETTINGS ============ -->
       <section class="panel" id="panel-settings">
         <div class="card" style="max-width:640px;">
           <h4><i class="fas fa-cog"></i> System settings</h4>
           <form id="settingsForm">
             <div class="form-group"><label class="form-label" for="setWhatsapp">WhatsApp notification number</label>
-              <input class="form-control" type="tel" id="setWhatsapp" placeholder="+249..." />
-              <p style="font-size:.75rem;color:var(--muted);margin-top:.3rem;">Every new booking triggers an alert to this WhatsApp number.</p></div>
-            <div class="form-group"><label class="form-label">
-              <input type="checkbox" id="setAutoConfirm" style="margin-right:.5rem;" /> Auto-confirm new bookings</label>
-              <p style="font-size:.75rem;color:var(--muted);">If disabled, bookings will arrive as "pending" for manual approval.</p></div>
+              <input class="form-control" type="tel" id="setWhatsapp" placeholder="+249..." /></div>
+            <div class="form-group"><label class="form-label"><input type="checkbox" id="setAutoConfirm" style="margin-right:.5rem;" /> Auto-confirm new bookings</label></div>
             <div class="form-group"><label class="form-label" for="setTax">Tax rate (%)</label>
               <input class="form-control" type="number" id="setTax" min="0" max="30" step="1" style="max-width:120px;" /></div>
             <button type="submit" class="btn btn-gold"><i class="fas fa-save"></i> Save settings</button>
           </form>
           <hr style="margin:1.5rem 0;border:none;border-top:1px solid #ece7dd;" />
           <h4 style="color:var(--danger);"><i class="fas fa-exclamation-triangle"></i> Danger zone</h4>
-          <p style="font-size:.82rem;color:var(--muted);margin-bottom:.8rem;">Reset all demo data (bookings, notifications, room statuses). This cannot be undone.</p>
-          <button class="btn btn-ghost" id="resetDemo" style="border-color:var(--danger);color:var(--danger);">
-            <i class="fas fa-trash-alt"></i> Reset demo data</button>
+          <p style="font-size:.82rem;color:var(--muted);margin-bottom:.8rem;">Reset all demo data (bookings, employees, transactions, tasks, notifications).</p>
+          <button class="btn btn-ghost" id="resetDemo" style="border-color:var(--danger);color:var(--danger);"><i class="fas fa-trash-alt"></i> Reset demo data</button>
         </div>
       </section>
+
     </main>
   </div>
 </div>
@@ -147,37 +227,17 @@
 <script src="js/admin.js"></script>
 <script>
 (function(){
-  const host=document.getElementById('toastHost');
-  window.KanonToast=function(o){
-    if(!host)return;
-    const el=document.createElement('div');
-    el.className='toast '+(o.variant||'');
-    el.innerHTML='<i class="fas '+(o.icon||'fa-bell')+' lead-icon"></i><div><span>'+o.title+'</span>'+(o.sub?'<small>'+o.sub+'</small>':'')+'</div>';
+  var host = document.getElementById('toastHost');
+  window.KanonToast = function(o){
+    if (!host) return;
+    var el = document.createElement('div');
+    el.className = 'toast ' + (o.variant || '');
+    el.innerHTML = '<i class="fas ' + (o.icon || 'fa-bell') + ' lead-icon"></i><div><span>' + o.title + '</span>' + (o.sub ? '<small>' + o.sub + '</small>' : '') + '</div>';
     host.appendChild(el);
-    requestAnimationFrame(function(){el.classList.add('show');});
-    setTimeout(function(){el.classList.remove('show');setTimeout(function(){el.remove();},500);},4000);
+    requestAnimationFrame(function(){ el.classList.add('show'); });
+    setTimeout(function(){ el.classList.remove('show'); setTimeout(function(){ el.remove(); }, 500); }, 4000);
   };
 })();
-document.addEventListener('DOMContentLoaded',function(){
-  const btn=document.getElementById('markAllRead');
-  if(btn)btn.addEventListener('click',function(){
-    window.KanonStore.markNotificationsRead();
-    window.KanonToast({icon:'fa-check-circle',title:'All notifications marked as read',variant:'success'});
-  });
-});
-document.addEventListener('DOMContentLoaded',function(){
-  const tbody=document.getElementById('bookingsTbodyLatest');
-  if(!tbody)return;
-  function renderLatest(){
-    const list=window.KanonStore.getBookings().slice(0,5);
-    if(!list.length){tbody.innerHTML='<tr><td colspan="7"><div class="empty"><i class="fas fa-inbox"></i>No bookings yet.</div></td></tr>';return;}
-    tbody.innerHTML=list.map(function(b){
-      return '<tr><td><strong>'+b.id+'</strong></td><td>'+b.guestName+'</td><td>'+b.propertyName+'</td><td>'+b.roomType+' #'+b.roomNumber+'</td><td>'+new Date(b.checkin).toLocaleDateString('en-GB',{day:'2-digit',month:'short'})+'</td><td>'+window.KanonStore.money(b.total)+'</td><td><span class="badge '+b.status+'">'+b.status.replace('-',' ')+'</span></td></tr>';
-    }).join('');
-  }
-  renderLatest();
-  window.KanonStore.subscribe(renderLatest);
-});
 </script>
 </body>
 </html>
